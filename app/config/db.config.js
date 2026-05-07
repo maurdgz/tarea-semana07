@@ -1,15 +1,15 @@
 // app/config/db.config.js
-export default {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "", // Pon aquí tu contraseña de MySQL si tienes una
-  DB: "testdb", // Asegúrate de que este nombre coincida con tu BD en MySQL
-  PORT: 3306,
+module.exports = {
+  HOST: process.env.DB_HOST || "localhost",
+  USER: process.env.DB_USER || "root",
+  PASSWORD: process.env.DB_PASSWORD || "",
+  DB: process.env.DB_NAME || "testdb", // Aquí pon el nombre de tu db local si gustas
   dialect: "mysql",
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
+  port: process.env.DB_PORT || 3306,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false // Necesario para Aiven
+    }
+  }
 };
