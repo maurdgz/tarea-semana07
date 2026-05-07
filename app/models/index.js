@@ -1,10 +1,11 @@
 // app/models/index.js
 import Sequelize from "sequelize";
+import dbConfig from "../config/db.config.js"; // Cambiado de require a import
+
+// Los modelos pueden seguir con require si usas la técnica de createRequire que te pasé antes
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-// Importamos la configuración y modelos usando require para mantener compatibilidad con tus archivos .js
-const dbConfig = require("../config/db.config.js");
 const userModel = require("./user.model.js");
 const roleModel = require("./role.model.js");
 const refreshTokenModel = require("./refreshToken.model.js");
